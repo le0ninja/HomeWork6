@@ -15,12 +15,9 @@ import android.widget.TextView;
 public class NotesListFragment extends Fragment {
     public static final String CURRENT_NOTE = "note_current";
     private Note currentNote;
-    private NotesListFragment CoatOfArmsFragment;
-
 
     public static NotesListFragment newInstance() {
-        NotesListFragment fragment = new NotesListFragment();
-        return fragment;
+        return new NotesListFragment();
     }
     private void initView(View view) {
         String[] notes = getResources().getStringArray(R.array.notes);
@@ -57,11 +54,11 @@ public class NotesListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_notes_list, container, false);
     }
     private void showLand() {
-        NoteDescription coatOfArmsFragment = NoteDescription.newInstance(currentNote);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.coat_of_arms,coatOfArmsFragment).commit();
+        NoteDescription noteDesc = NoteDescription.newInstance(currentNote);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.notes_description,noteDesc).commit();
     }
     private void showPort() {
-        NoteDescription coatOfArmsFragment = NoteDescription.newInstance(currentNote);
-        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.cities,coatOfArmsFragment).addToBackStack("").commit();
+        NoteDescription noteDesc = NoteDescription.newInstance(currentNote);
+        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.notes,noteDesc).addToBackStack("").commit();
     }
 }

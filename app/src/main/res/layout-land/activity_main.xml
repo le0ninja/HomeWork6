@@ -6,8 +6,15 @@
     tools:context="ru.gb.homework6.MainActivity">
 
 
+
     <FrameLayout
         android:id="@+id/notes"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/notes_description"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"/>
