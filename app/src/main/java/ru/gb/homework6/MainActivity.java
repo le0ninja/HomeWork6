@@ -13,15 +13,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     if(savedInstanceState ==null) {
-        NotesListFragment notelstFragment = NotesListFragment.newInstance();
-        getSupportFragmentManager().beginTransaction().replace(R.id.notes, notelstFragment).commit();
+        NotesListFragment noteLstFragment = NotesListFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.notes, noteLstFragment).commit();
     }
 }
-
-
-    /** Пришлось перенести наш костыль в onResume
-     * так как не onBackPressed() вызывать в onCreate - черевато
-     **/
     @Override
     protected void onResume() {
         super.onResume();
