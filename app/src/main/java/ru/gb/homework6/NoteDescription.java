@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,8 +44,21 @@ public class NoteDescription extends Fragment {
         TextView tv=  view.findViewById(R.id.tv);
         String[] descrips = getResources().getStringArray(R.array.notes_description);
         tv.setText(descrips[note.getIndex()]);
-
+        DatePicker datePicker = view.findViewById(R.id.datePicker);
+        TextView textViewDate = view.findViewById(R.id.textViewDate);
+        // по хорошему нужно вот так запивать textViewDate.setText(new StringBuilder().append(note.getNoteDateYear(getContext())).append(" ").append(note.getNoteDateMonth(getContext())).append(" ").append(note.getNoteDateDay(getContext())).toString());
+        textViewDate.setText(note.getNoteDateYear(getContext())+" "+ note.getNoteDateMonth(getContext())+" "+ note.getNoteDateDay(getContext()));
+        datePicker.init(note.getNoteDateYear(getContext()), note.getNoteDateMonth(getContext()), note.getNoteDateDay(getContext()), new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                //сохраним полученные данные
+                note.setNoteDate(getContext(),year, monthOfYear,dayOfMonth);
+                // обновим поле даты
+                textViewDate.setText(new StringBuilder().append(note.getNoteDateYear(getContext())).append(" ").append(note.getNoteDateMonth(getContext())).append(" ").append(note.getNoteDateDay(getContext())).toString());
+            }
+        });
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
