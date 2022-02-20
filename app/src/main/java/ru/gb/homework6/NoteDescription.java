@@ -1,5 +1,6 @@
 package ru.gb.homework6;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,16 +38,12 @@ public class NoteDescription extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //assert getArguments() != null;
         note = getArguments().getParcelable(ARG_NOTE);
-        //TextView tv=  view.findViewById(R.id.tv);
-        String[] notes_desc = getResources().getStringArray(R.array.notes_description);
-        for (int i=0;i<notes_desc.length;i++){
-            String cityName = notes_desc[i];
-            TextView textView = new TextView(getContext());
-            textView.setTextSize(30f);
-            textView.setText(cityName);
-            ((LinearLayout) view).addView(textView);
-        }
+        TextView tv=  view.findViewById(R.id.tv);
+        String[] descrips = getResources().getStringArray(R.array.notes_description);
+        tv.setText(descrips[note.getIndex()]);
+
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
